@@ -7,6 +7,12 @@ jobs:
   unit_testing:
     runs-on: ubuntu-latest
     steps:
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.ID_RSA }}
+          name: id_rsa
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
       - name: Get files
         uses: actions/checkout@v2
       - name: Example
@@ -15,4 +21,5 @@ jobs:
           pwd
           echo $ ls -la
           ls -la
-
+          echo $ ssh diagonal@cassini.cs.kent.edu ls -la
+          ssh diagonal@cassini.cs.kent.edu ls -la
