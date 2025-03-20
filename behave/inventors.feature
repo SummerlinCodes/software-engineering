@@ -1,11 +1,18 @@
-Feature: make sure inventors get credit
+Feature: check inventors on invention pages
 
-  Scenario: Check Edison gets credit for light bulb
+Scenario Outline:
      Given we have navigated to wikipedia
-      When we search for light bulb
-      Then the resulting page will include Edison
+      When we search for "<invention>"
+      Then the resulting page will include "<inventor>"
 
-  Scenario: Check Dave gets credit for light bulb
-     Given we have navigated to wikipedia
-      When we search for light bulb
-      Then the resulting page will include Davy
+  Examples: Electronics
+    | invention | inventor |
+    | Telephone | Alexander Graham Bell |
+    | Transistor | Bardeen |
+    | Light Bulb | Edison |
+    | Phonograph | Edison |
+
+  Examples: Transportation
+    | invention | inventor |
+    | Airplane | Wright |
+    | Helicopter | Sikorsky |
